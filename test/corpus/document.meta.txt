@@ -1,0 +1,28 @@
+=========
+Statement
+=========
+title: Neorg
+---
+(metadata
+    (statement
+        (keyword)
+        (description)
+    )
+)
+
+========
+Metadata
+========
+title: Neorg
+author: nvim-neorg
+---
+(metadata
+    (statement
+        (keyword)
+        (description)
+    )
+    (statement
+        (keyword)
+        (description)
+    )
+)
