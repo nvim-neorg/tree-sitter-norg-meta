@@ -13,13 +13,17 @@ module.exports = grammar({
             $.description
         ),
 
-        keyword: $ => choice(
-            $._word
-        ),
+        keyword: $ => /[^\s:]+/,
 
-        description: $ => prec.left(1,
-            repeat1(
-                $._word
+        description: $ => seq(
+            $._word,
+            optional(
+                repeat(
+                    seq(
+                        $._space,
+                        $._word
+                    )
+                )
             )
         ),
 
@@ -27,7 +31,7 @@ module.exports = grammar({
 
         _space: $ => /\s+/,
 
-        _word: $ => /[^\s:]+/
+        _word: $ => /\S+/
 
     }
 });

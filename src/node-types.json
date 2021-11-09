@@ -5,11 +5,6 @@
     "fields": {}
   },
   {
-    "type": "keyword",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "metadata",
     "named": true,
     "fields": {},
@@ -42,5 +37,9 @@
         }
       ]
     }
+  },
+  {
+    "type": "keyword",
+    "named": true
   }
 ]

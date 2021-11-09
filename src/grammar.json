@@ -30,24 +30,41 @@
       ]
     },
     "keyword": {
-      "type": "CHOICE",
+      "type": "PATTERN",
+      "value": "[^\\s:]+"
+    },
+    "description": {
+      "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
           "name": "_word"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_space"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "_word"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
-    },
-    "description": {
-      "type": "PREC_LEFT",
-      "value": 1,
-      "content": {
-        "type": "REPEAT1",
-        "content": {
-          "type": "SYMBOL",
-          "name": "_word"
-        }
-      }
     },
     "_separator": {
       "type": "STRING",
@@ -59,7 +76,7 @@
     },
     "_word": {
       "type": "PATTERN",
-      "value": "[^\\s:]+"
+      "value": "\\S+"
     }
   },
   "extras": [

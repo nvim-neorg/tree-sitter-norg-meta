@@ -26,3 +26,15 @@ author: nvim-neorg
         (description)
     )
 )
+
+======================
+Multi-word description
+======================
+description: This is a longer text.
+---
+(metadata
+    (statement
+        (keyword)
+        (description)
+    )
+)
