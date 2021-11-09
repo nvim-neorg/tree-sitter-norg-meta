@@ -1,35 +1,46 @@
 [
   {
-    "type": "title",
+    "type": "description",
     "named": true,
     "fields": {}
   },
   {
-    "type": ":",
-    "named": false
+    "type": "keyword",
+    "named": true,
+    "fields": {}
   },
   {
-    "type": "author",
-    "named": false
+    "type": "metadata",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "categories",
-    "named": false
-  },
-  {
-    "type": "created",
-    "named": false
-  },
-  {
-    "type": "description",
-    "named": false
-  },
-  {
-    "type": "title",
-    "named": false
-  },
-  {
-    "type": "version",
-    "named": false
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "description",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        }
+      ]
+    }
   }
 ]

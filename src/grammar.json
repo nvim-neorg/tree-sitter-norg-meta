@@ -1,83 +1,65 @@
 {
   "name": "norg_meta",
   "rules": {
-    "title": {
+    "metadata": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "statement"
+      }
+    },
+    "statement": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "title"
+          "type": "SYMBOL",
+          "name": "keyword"
         },
         {
-          "type": "STRING",
-          "value": ":"
+          "type": "SYMBOL",
+          "name": "_separator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_space"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "description"
+        }
+      ]
+    },
+    "keyword": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_word"
         }
       ]
     },
     "description": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "description"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "SYMBOL",
+          "name": "_word"
         }
-      ]
+      }
     },
-    "author": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "author"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        }
-      ]
+    "_separator": {
+      "type": "STRING",
+      "value": ":"
     },
-    "categories": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "categories"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        }
-      ]
+    "_space": {
+      "type": "PATTERN",
+      "value": "\\s+"
     },
-    "created": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "created"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        }
-      ]
-    },
-    "version": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "version"
-        },
-        {
-          "type": "STRING",
-          "value": ":"
-        }
-      ]
+    "_word": {
+      "type": "PATTERN",
+      "value": "[^\\s:]+"
     }
   },
   "extras": [

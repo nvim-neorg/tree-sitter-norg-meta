@@ -2,40 +2,32 @@ module.exports = grammar({
     name: 'norg_meta',
 
     rules: {
-        title: $ => seq(
-            "title",
-            ":"
-            // TODO
+        metadata: $ => repeat(
+            $.statement
         ),
 
-        description: $ => seq(
-            "description",
-            ":"
-            // TODO
+        statement: $ => seq(
+            $.keyword,
+            $._separator,
+            $._space,
+            $.description
         ),
 
-        author: $ => seq(
-            "author",
-            ":"
-            // TODO
+        keyword: $ => choice(
+            $._word
         ),
 
-        categories: $ => seq(
-            "categories",
-            ":"
-            // TODO
+        description: $ => prec.left(1,
+            repeat1(
+                $._word
+            )
         ),
 
-        created: $ => seq(
-            "created",
-            ":"
-            // TODO
-        ),
+        _separator: $ => ":",
 
-        version: $ => seq(
-            "version",
-            ":"
-            // TODO
-        )
+        _space: $ => /\s+/,
+
+        _word: $ => /[^\s:]+/
+
     }
 });
