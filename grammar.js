@@ -11,12 +11,14 @@ module.exports = grammar({
 
         statement: $ => seq(
             $.keyword,
-            $._separator,
             $._space,
             $.value
         ),
 
-        keyword: $ => /[^\s:]+/,
+        keyword: $ => seq(
+            /[^\s:]+/,
+            $._separator
+        ),
 
         value: $ => seq(
             optional(
@@ -25,7 +27,23 @@ module.exports = grammar({
             $._text_till_eol
         ),
 
-        delimiter: $ => /---+\n/,
+        delimiter: $ => choice(
+            $._delimiter,
+            $.named_delimiter
+        ),
+
+        _delimiter: $ => /---+\n/,
+
+        named_delimiter: $ => prec(3, seq(
+            /---+\s*/,
+            prec.left(2,
+                seq(
+                    field("title", /[^-]+/),
+                    /\s*/
+                )
+            ),
+            $._delimiter,
+        )),
 
         _separator: $ => ":",
 

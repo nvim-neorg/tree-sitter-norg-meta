@@ -1,5 +1,25 @@
 [
   {
+    "type": "delimiter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "named_delimiter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "metadata",
     "named": true,
     "fields": {},
@@ -17,6 +37,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "named_delimiter",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "statement",
@@ -41,14 +66,6 @@
     "type": "value",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "delimiter",
-    "named": true
-  },
-  {
-    "type": "keyword",
-    "named": true
   },
   {
     "type": "~\n",
