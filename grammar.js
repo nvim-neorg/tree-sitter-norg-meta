@@ -15,11 +15,23 @@ module.exports = grammar({
 
         keyword: $ => /[^\s:]+/,
 
-        value: $ => /[^\n]+/,
+        value: $ => seq(
+            optional(
+                repeat($._text_with_trailing_modifier)
+            ),
+            $._text_till_eol
+        ),
 
         _separator: $ => ":",
 
-        _space: $ => /\s+/
+        _space: $ => /\s+/,
+
+        _text_till_eol: $ => /[^(\~\n)]+/,
+
+        _text_with_trailing_modifier: $ => seq(
+            $._text_till_eol,
+            "\~\n"
+        )
 
     }
 });

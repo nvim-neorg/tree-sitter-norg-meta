@@ -38,3 +38,26 @@ description: This is a longer text.
         (value)
     )
 )
+
+=================
+Trailing Modifier
+=================
+title: Neorg
+description: This is an even longer text~
+    which even gets continued on the next line.
+author: nvim-neorg
+---
+(metadata
+    (statement
+        (keyword)
+        (value)
+    )
+    (statement
+        (keyword)
+        (value)
+    )
+    (statement
+        (keyword)
+        (value)
+    )
+)

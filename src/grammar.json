@@ -34,8 +34,28 @@
       "value": "[^\\s:]+"
     },
     "value": {
-      "type": "PATTERN",
-      "value": "[^\\n]+"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_text_with_trailing_modifier"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_text_till_eol"
+        }
+      ]
     },
     "_separator": {
       "type": "STRING",
@@ -44,6 +64,23 @@
     "_space": {
       "type": "PATTERN",
       "value": "\\s+"
+    },
+    "_text_till_eol": {
+      "type": "PATTERN",
+      "value": "[^(\\~\\n)]+"
+    },
+    "_text_with_trailing_modifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_text_till_eol"
+        },
+        {
+          "type": "STRING",
+          "value": "~\n"
+        }
+      ]
     }
   },
   "extras": [
