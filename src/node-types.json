@@ -8,6 +8,10 @@
       "required": false,
       "types": [
         {
+          "type": "delimiter",
+          "named": true
+        },
+        {
           "type": "statement",
           "named": true
         }
@@ -37,6 +41,10 @@
     "type": "value",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "delimiter",
+    "named": true
   },
   {
     "type": "keyword",

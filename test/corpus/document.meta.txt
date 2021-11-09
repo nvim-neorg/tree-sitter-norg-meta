@@ -61,3 +61,22 @@ author: nvim-neorg
         (value)
     )
 )
+
+===============
+Basic delimiter
+===============
+title: Neorg
+ ---
+author: nvim-neorg
+---
+(metadata
+    (statement
+        (keyword)
+        (value)
+    )
+    (delimiter)
+    (statement
+        (keyword)
+        (value)
+    )
+)

@@ -3,7 +3,10 @@ module.exports = grammar({
 
     rules: {
         metadata: $ => repeat(
-            $.statement
+            choice(
+                $.statement,
+                $.delimiter
+            )
         ),
 
         statement: $ => seq(
@@ -21,6 +24,8 @@ module.exports = grammar({
             ),
             $._text_till_eol
         ),
+
+        delimiter: $ => /---+\n/,
 
         _separator: $ => ":",
 

@@ -4,8 +4,17 @@
     "metadata": {
       "type": "REPEAT",
       "content": {
-        "type": "SYMBOL",
-        "name": "statement"
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "statement"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "delimiter"
+          }
+        ]
       }
     },
     "statement": {
@@ -56,6 +65,10 @@
           "name": "_text_till_eol"
         }
       ]
+    },
+    "delimiter": {
+      "type": "PATTERN",
+      "value": "---+\\n"
     },
     "_separator": {
       "type": "STRING",
