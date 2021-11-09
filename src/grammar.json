@@ -34,37 +34,8 @@
       "value": "[^\\s:]+"
     },
     "description": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_word"
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_space"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "_word"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
+      "type": "PATTERN",
+      "value": "[^\\n]+"
     },
     "_separator": {
       "type": "STRING",
@@ -73,10 +44,6 @@
     "_space": {
       "type": "PATTERN",
       "value": "\\s+"
-    },
-    "_word": {
-      "type": "PATTERN",
-      "value": "\\S+"
     }
   },
   "extras": [

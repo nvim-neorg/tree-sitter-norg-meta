@@ -15,23 +15,11 @@ module.exports = grammar({
 
         keyword: $ => /[^\s:]+/,
 
-        description: $ => seq(
-            $._word,
-            optional(
-                repeat(
-                    seq(
-                        $._space,
-                        $._word
-                    )
-                )
-            )
-        ),
+        description: $ => /[^\n]+/,
 
         _separator: $ => ":",
 
-        _space: $ => /\s+/,
-
-        _word: $ => /\S+/
+        _space: $ => /\s+/
 
     }
 });

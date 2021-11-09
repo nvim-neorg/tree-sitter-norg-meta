@@ -1,10 +1,5 @@
 [
   {
-    "type": "description",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "metadata",
     "named": true,
     "fields": {},
@@ -37,6 +32,10 @@
         }
       ]
     }
+  },
+  {
+    "type": "description",
+    "named": true
   },
   {
     "type": "keyword",
