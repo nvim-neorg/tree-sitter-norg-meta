@@ -103,3 +103,20 @@ author: nvim-neorg
         (value)
     )
 )
+
+======
+Groups
+======
+tangle: {
+    epic: things
+}
+---
+(metadata
+    (statement_group
+        (keyword)
+        (statement
+            (keyword)
+            (value)
+        )
+    )
+)

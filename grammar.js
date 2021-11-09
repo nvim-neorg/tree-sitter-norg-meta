@@ -4,6 +4,7 @@ module.exports = grammar({
     rules: {
         metadata: $ => repeat(
             choice(
+                $.statement_group,
                 $.statement,
                 $.delimiter
             )
@@ -14,6 +15,14 @@ module.exports = grammar({
             $.value
         ),
 
+        statement_group: $ => prec(2, seq(
+            $.keyword,
+            "{",
+            repeat1(
+                $.statement
+            ),
+            "}"
+        )),
 
         keyword: $ => seq(
             /[^\s:]+/,

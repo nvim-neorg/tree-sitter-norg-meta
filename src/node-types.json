@@ -34,6 +34,10 @@
         {
           "type": "statement",
           "named": true
+        },
+        {
+          "type": "statement_group",
+          "named": true
         }
       ]
     }
@@ -63,9 +67,36 @@
     }
   },
   {
+    "type": "statement_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "value",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
   },
   {
     "type": "~\n",

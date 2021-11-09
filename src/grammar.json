@@ -8,6 +8,10 @@
         "members": [
           {
             "type": "SYMBOL",
+            "name": "statement_group"
+          },
+          {
+            "type": "SYMBOL",
             "name": "statement"
           },
           {
@@ -29,6 +33,34 @@
           "name": "value"
         }
       ]
+    },
+    "statement_group": {
+      "type": "PREC",
+      "value": 2,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "keyword"
+          },
+          {
+            "type": "STRING",
+            "value": "{"
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "SYMBOL",
+              "name": "statement"
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "}"
+          }
+        ]
+      }
     },
     "keyword": {
       "type": "SEQ",
