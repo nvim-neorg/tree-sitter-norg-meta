@@ -1,0 +1,35 @@
+[
+  {
+    "type": "title",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "author",
+    "named": false
+  },
+  {
+    "type": "categories",
+    "named": false
+  },
+  {
+    "type": "created",
+    "named": false
+  },
+  {
+    "type": "description",
+    "named": false
+  },
+  {
+    "type": "title",
+    "named": false
+  },
+  {
+    "type": "version",
+    "named": false
+  }
+]
