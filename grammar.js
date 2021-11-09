@@ -11,9 +11,9 @@ module.exports = grammar({
 
         statement: $ => seq(
             $.keyword,
-            $._space,
             $.value
         ),
+
 
         keyword: $ => seq(
             /[^\s:]+/,
@@ -46,8 +46,6 @@ module.exports = grammar({
         )),
 
         _separator: $ => ":",
-
-        _space: $ => /\s+/,
 
         _text_till_eol: $ => /[^(\~\n)]+/,
 

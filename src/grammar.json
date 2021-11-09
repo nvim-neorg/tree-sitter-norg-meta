@@ -26,10 +26,6 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_space"
-        },
-        {
-          "type": "SYMBOL",
           "name": "value"
         }
       ]
@@ -129,10 +125,6 @@
     "_separator": {
       "type": "STRING",
       "value": ":"
-    },
-    "_space": {
-      "type": "PATTERN",
-      "value": "\\s+"
     },
     "_text_till_eol": {
       "type": "PATTERN",
