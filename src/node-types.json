@@ -23,22 +23,22 @@
       "required": true,
       "types": [
         {
-          "type": "description",
+          "type": "keyword",
           "named": true
         },
         {
-          "type": "keyword",
+          "type": "value",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "description",
+    "type": "keyword",
     "named": true
   },
   {
-    "type": "keyword",
+    "type": "value",
     "named": true
   }
 ]

@@ -18,7 +18,7 @@
 
 enum {
   sym_keyword = 1,
-  sym_description = 2,
+  sym_value = 2,
   sym__separator = 3,
   sym__space = 4,
   sym_metadata = 5,
@@ -29,7 +29,7 @@ enum {
 static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
   [sym_keyword] = "keyword",
-  [sym_description] = "description",
+  [sym_value] = "value",
   [sym__separator] = "_separator",
   [sym__space] = "_space",
   [sym_metadata] = "metadata",
@@ -40,7 +40,7 @@ static const char * const ts_symbol_names[] = {
 static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
   [sym_keyword] = sym_keyword,
-  [sym_description] = sym_description,
+  [sym_value] = sym_value,
   [sym__separator] = sym__separator,
   [sym__space] = sym__space,
   [sym_metadata] = sym_metadata,
@@ -57,7 +57,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_description] = {
+  [sym_value] = {
     .visible = true,
     .named = true,
   },
@@ -130,7 +130,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead != ':') ADVANCE(4);
       END_STATE();
     case 5:
-      ACCEPT_TOKEN(sym_description);
+      ACCEPT_TOKEN(sym_value);
       if (lookahead == '\t' ||
           lookahead == '\r' ||
           lookahead == ' ') ADVANCE(5);
@@ -138,7 +138,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead != '\n') ADVANCE(6);
       END_STATE();
     case 6:
-      ACCEPT_TOKEN(sym_description);
+      ACCEPT_TOKEN(sym_value);
       if (lookahead != 0 &&
           lookahead != '\n') ADVANCE(6);
       END_STATE();
@@ -216,7 +216,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym__space,
   [39] = 1,
     ACTIONS(22), 1,
-      sym_description,
+      sym_value,
 };
 
 static const uint32_t ts_small_parse_table_map[] = {

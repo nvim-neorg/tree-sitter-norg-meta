@@ -1,2 +1,2 @@
 (keyword) @keyword
-(description) @string
+(value) @string

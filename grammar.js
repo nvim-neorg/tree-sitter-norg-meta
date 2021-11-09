@@ -10,12 +10,12 @@ module.exports = grammar({
             $.keyword,
             $._separator,
             $._space,
-            $.description
+            $.value
         ),
 
         keyword: $ => /[^\s:]+/,
 
-        description: $ => /[^\n]+/,
+        value: $ => /[^\n]+/,
 
         _separator: $ => ":",
 

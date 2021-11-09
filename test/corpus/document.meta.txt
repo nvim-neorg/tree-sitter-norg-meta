@@ -6,7 +6,7 @@ title: Neorg
 (metadata
     (statement
         (keyword)
-        (description)
+        (value)
     )
 )
 
@@ -19,22 +19,22 @@ author: nvim-neorg
 (metadata
     (statement
         (keyword)
-        (description)
+        (value)
     )
     (statement
         (keyword)
-        (description)
+        (value)
     )
 )
 
-======================
-Multi-word description
-======================
+=================
+Multi-word values
+=================
 description: This is a longer text.
 ---
 (metadata
     (statement
         (keyword)
-        (description)
+        (value)
     )
 )
