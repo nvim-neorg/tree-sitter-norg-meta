@@ -8,11 +8,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "statement_group"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "statement"
+            "name": "pair"
           },
           {
             "type": "SYMBOL",
@@ -21,48 +17,33 @@
         ]
       }
     },
-    "statement": {
+    "pair": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "keyword"
+          "name": "key"
         },
         {
-          "type": "SYMBOL",
-          "name": "value"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "value"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "object"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "array"
+            }
+          ]
         }
       ]
     },
-    "statement_group": {
-      "type": "PREC",
-      "value": 2,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "keyword"
-          },
-          {
-            "type": "STRING",
-            "value": "{"
-          },
-          {
-            "type": "REPEAT1",
-            "content": {
-              "type": "SYMBOL",
-              "name": "statement"
-            }
-          },
-          {
-            "type": "STRING",
-            "value": "}"
-          }
-        ]
-      }
-    },
-    "keyword": {
+    "key": {
       "type": "SEQ",
       "members": [
         {
@@ -76,26 +57,75 @@
       ]
     },
     "value": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_text_with_trailing_modifier"
+                  }
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_text_till_eol"
+            }
+          ]
+        }
+      ]
+    },
+    "object": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_text_with_trailing_modifier"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "STRING",
+          "value": "{"
         },
         {
-          "type": "SYMBOL",
-          "name": "_text_till_eol"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "pair"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "array": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "FIELD",
+            "name": "item",
+            "content": {
+              "type": "SYMBOL",
+              "name": "value"
+            }
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },

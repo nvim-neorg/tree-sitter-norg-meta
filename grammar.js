@@ -4,36 +4,48 @@ module.exports = grammar({
     rules: {
         metadata: $ => repeat(
             choice(
-                $.statement_group,
-                $.statement,
+                $.pair,
                 $.delimiter
             )
         ),
 
-        statement: $ => seq(
-            $.keyword,
-            $.value
+        pair: $ => seq(
+            $.key,
+            choice(
+                $.value,
+                $.object,
+                $.array,
+            ),
         ),
 
-        statement_group: $ => prec(2, seq(
-            $.keyword,
-            "{",
-            repeat1(
-                $.statement
-            ),
-            "}"
-        )),
-
-        keyword: $ => seq(
+        key: $ => seq(
             /[^\s:]+/,
             $._separator
         ),
 
-        value: $ => seq(
-            optional(
-                repeat($._text_with_trailing_modifier)
+        value: $ => choice(
+            seq(
+                optional(
+                    repeat($._text_with_trailing_modifier)
+                ),
+                $._text_till_eol
             ),
-            $._text_till_eol
+        ),
+
+        object: $ => seq(
+            "{",
+            repeat(
+                $.pair,
+            ),
+            "}",
+        ),
+
+        array: $ => seq(
+            "[",
+            repeat(
+                field("item", $.value),
+            ),
+            "]",
         ),
 
         delimiter: $ => choice(

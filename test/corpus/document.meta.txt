@@ -1,11 +1,11 @@
 =========
-Statement
+Key Pairs
 =========
 title: Neorg
 ---
 (metadata
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
 )
@@ -17,12 +17,12 @@ title: Neorg
 author: nvim-neorg
 ---
 (metadata
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
 )
@@ -33,8 +33,8 @@ Multi-word values
 description: This is a longer text.
 ---
 (metadata
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
 )
@@ -48,16 +48,16 @@ description: This is an even longer text~
 author: nvim-neorg
 ---
 (metadata
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
 )
@@ -70,13 +70,13 @@ title: Neorg
 author: nvim-neorg
 ---
 (metadata
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
     (delimiter)
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
 )
@@ -91,15 +91,15 @@ author: nvim-neorg
 
 ---
 (metadata
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
     (delimiter
         (named_delimiter)
     )
-    (statement
-        (keyword)
+    (pair
+        (key)
         (value)
     )
 )
@@ -108,15 +108,122 @@ author: nvim-neorg
 Groups
 ======
 tangle: {
-    epic: things
+    file: location
+    language: lua
 }
 ---
 (metadata
-    (statement_group
-        (keyword)
-        (statement
-            (keyword)
-            (value)
+    (pair
+        (key)
+        (object
+            (pair
+                (key)
+                (value)
+            )
+            (pair
+                (key)
+                (value)
+            )
+        )
+    ) 
+)
+
+====================
+Groups within Groups
+====================
+parent_key: {
+    nested_key: {
+        key: value
+        otherkey: value
+    }
+}
+---
+(metadata
+    (pair
+        (key)
+        (object
+            (pair
+                (key)
+                (object
+                    (pair
+                        (key)
+                        (value)
+                    )
+                    (pair
+                        (key)
+                        (value)
+                    )
+                )
+            )
+        )
+    ) 
+)
+
+===============
+Arrays of Items
+===============
+key: [
+    array item 1
+    array item 2
+
+    array item 3
+]
+---
+(metadata
+    (pair
+        (key)
+        (array
+            item: (value)
+            item: (value)
+            item: (value)
+        )
+    )
+)
+
+=====================
+Arrays Within Objects
+=====================
+object: {
+    array: [
+        item 1
+        item 2
+        item 3
+    ]
+}
+---
+(metadata
+    (pair
+        (key)
+        (object
+            (pair
+                (key)
+                (array
+                    item: (value)
+                    item: (value)
+                    item: (value)
+                )
+            )
+        )
+    )
+)
+
+=====================
+Arrays with Carryover
+=====================
+array: [
+    item 1
+    item 2~
+    that carries over
+    item 3
+]
+---
+(metadata
+    (pair
+        (key)
+        (array
+            item: (value)
+            item: (value)
+            item: (value)
         )
     )
 )

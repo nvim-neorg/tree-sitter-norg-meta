@@ -1,5 +1,21 @@
 [
   {
+    "type": "array",
+    "named": true,
+    "fields": {
+      "item": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "delimiter",
     "named": true,
     "fields": {},
@@ -15,7 +31,7 @@
     }
   },
   {
-    "type": "keyword",
+    "type": "key",
     "named": true,
     "fields": {}
   },
@@ -32,11 +48,7 @@
           "named": true
         },
         {
-          "type": "statement",
-          "named": true
-        },
-        {
-          "type": "statement_group",
+          "type": "pair",
           "named": true
         }
       ]
@@ -48,7 +60,22 @@
     "fields": {}
   },
   {
-    "type": "statement",
+    "type": "object",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "pair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pair",
     "named": true,
     "fields": {},
     "children": {
@@ -56,7 +83,15 @@
       "required": true,
       "types": [
         {
-          "type": "keyword",
+          "type": "array",
+          "named": true
+        },
+        {
+          "type": "key",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -67,28 +102,17 @@
     }
   },
   {
-    "type": "statement_group",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "keyword",
-          "named": true
-        },
-        {
-          "type": "statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "value",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
   },
   {
     "type": "{",
