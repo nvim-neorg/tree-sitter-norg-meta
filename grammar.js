@@ -10,26 +10,28 @@ module.exports = grammar({
         ),
 
         pair: $ => seq(
-            $.key,
+            $._key,
+            token.immediate(/[ \t\v]*/),
             choice(
                 $.value,
                 $.object,
                 $.array,
+                token.immediate('\n'),
             ),
         ),
 
-        key: $ => seq(
-            /[^\s:]+/,
+        key: $ => /[^\s:]+/,
+
+        _key: $ => seq(
+            $.key,
             $._separator
         ),
 
-        value: $ => choice(
-            seq(
-                optional(
-                    repeat($._text_with_trailing_modifier)
-                ),
-                $._text_till_eol
+        value: $ => seq(
+            optional(
+                repeat($._text_with_trailing_modifier)
             ),
+            $._text_till_eol
         ),
 
         object: $ => seq(

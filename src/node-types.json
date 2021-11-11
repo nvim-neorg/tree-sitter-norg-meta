@@ -31,11 +31,6 @@
     }
   },
   {
-    "type": "key",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "metadata",
     "named": true,
     "fields": {},
@@ -107,12 +102,20 @@
     "fields": {}
   },
   {
+    "type": "\n",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
   {
     "type": "]",
     "named": false
+  },
+  {
+    "type": "key",
+    "named": true
   },
   {
     "type": "{",
