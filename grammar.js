@@ -10,7 +10,7 @@ module.exports = grammar({
         key: _ => /[^\-\s:][^\s:]*/,
 
         value: $ => seq(
-            /[^\s\[\]\{\}][^\n\[\]\{\}\~]+/,
+            /[^\s\[\]\{\}][^\n\[\]\{\}\~]*/,
             optional(
                 choice(
                     seq(
