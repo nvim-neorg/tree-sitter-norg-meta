@@ -26,26 +26,44 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "[^\\s\\[\\]\\{\\}][^\\n\\[\\]\\{\\}(\\~\\n)]*"
+          "value": "[^\\s\\[\\]\\{\\}][^\\n\\[\\]\\{\\}\\~]+"
         },
         {
           "type": "CHOICE",
           "members": [
             {
-              "type": "SEQ",
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": "~\n"
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "~"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "[^\\n\\[\\]\\{\\}\\~]+"
+                    }
+                  ]
                 },
                 {
-                  "type": "ALIAS",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "value"
-                  },
-                  "named": false,
-                  "value": "_value"
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "~\n"
+                    },
+                    {
+                      "type": "ALIAS",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "value"
+                      },
+                      "named": false,
+                      "value": "_value"
+                    }
+                  ]
                 }
               ]
             },

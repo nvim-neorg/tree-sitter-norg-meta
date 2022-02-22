@@ -131,6 +131,10 @@
     "named": false
   },
   {
+    "type": "~",
+    "named": false
+  },
+  {
     "type": "~\n",
     "named": false
   }
