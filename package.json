@@ -34,9 +34,9 @@
     },
     "tree-sitter": [
         {
-            "scope": "document.norg",
+            "scope": "document.norg_meta",
             "file-types": [
-                "norg"
+                "norg_meta"
             ]
         }
     ]

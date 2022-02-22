@@ -17,84 +17,75 @@
         ]
       }
     },
-    "pair": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_key"
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "[ \\t\\v]*"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "value"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "object"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "array"
-            },
-            {
-              "type": "IMMEDIATE_TOKEN",
-              "content": {
-                "type": "STRING",
-                "value": "\n"
-              }
-            }
-          ]
-        }
-      ]
-    },
     "key": {
       "type": "PATTERN",
-      "value": "[^\\s:]+"
-    },
-    "_key": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "key"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_separator"
-        }
-      ]
+      "value": "[^\\-\\s:][^\\s:]*"
     },
     "value": {
       "type": "SEQ",
       "members": [
         {
+          "type": "PATTERN",
+          "value": "[^\\s\\[\\]\\{\\}][^\\n\\[\\]\\{\\}(\\~\\n)]*"
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "_text_with_trailing_modifier"
-              }
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "~\n"
+                },
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "value"
+                  },
+                  "named": false,
+                  "value": "_value"
+                }
+              ]
             },
             {
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "array": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
         },
         {
-          "type": "SYMBOL",
-          "name": "_text_till_eol"
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "array"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "object"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
         }
       ]
     },
@@ -118,103 +109,62 @@
         }
       ]
     },
-    "array": {
+    "pair": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "["
+          "type": "SYMBOL",
+          "name": "key"
         },
         {
-          "type": "REPEAT",
+          "type": "IMMEDIATE_TOKEN",
           "content": {
-            "type": "FIELD",
-            "name": "item",
-            "content": {
-              "type": "SYMBOL",
-              "name": "value"
-            }
+            "type": "STRING",
+            "value": ":"
           }
         },
         {
-          "type": "STRING",
-          "value": "]"
+          "type": "PATTERN",
+          "value": "[\\t\\v ]*"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "array"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "value"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "object"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\n"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     "delimiter": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_delimiter"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "named_delimiter"
-        }
-      ]
-    },
-    "_delimiter": {
-      "type": "PATTERN",
-      "value": "---+\\n"
-    },
-    "named_delimiter": {
-      "type": "PREC",
-      "value": 3,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "---+\\s*"
-          },
-          {
-            "type": "PREC_LEFT",
-            "value": 2,
-            "content": {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "title",
-                  "content": {
-                    "type": "PATTERN",
-                    "value": "[^-]+"
-                  }
-                },
-                {
-                  "type": "PATTERN",
-                  "value": "\\s*"
-                }
-              ]
-            }
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_delimiter"
-          }
-        ]
-      }
-    },
-    "_separator": {
-      "type": "STRING",
-      "value": ":"
-    },
-    "_text_till_eol": {
-      "type": "PATTERN",
-      "value": "[^(\\~\\n)]+"
-    },
-    "_text_with_trailing_modifier": {
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_text_till_eol"
+          "type": "STRING",
+          "value": "-"
         },
         {
-          "type": "STRING",
-          "value": "~\n"
+          "type": "PATTERN",
+          "value": "[^\\n]*"
         }
       ]
     }

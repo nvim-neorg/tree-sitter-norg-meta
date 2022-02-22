@@ -95,9 +95,7 @@ author: nvim-neorg
         (key)
         (value)
     )
-    (delimiter
-        (named_delimiter)
-    )
+    (delimiter)
     (pair
         (key)
         (value)
@@ -173,9 +171,9 @@ key: [
     (pair
         (key)
         (array
-            item: (value)
-            item: (value)
-            item: (value)
+            (value)
+            (value)
+            (value)
         )
     )
 )
@@ -198,9 +196,9 @@ object: {
             (pair
                 (key)
                 (array
-                    item: (value)
-                    item: (value)
-                    item: (value)
+                    (value)
+                    (value)
+                    (value)
                 )
             )
         )
@@ -221,9 +219,9 @@ array: [
     (pair
         (key)
         (array
-            item: (value)
-            item: (value)
-            item: (value)
+            (value)
+            (value)
+            (value)
         )
     )
 )

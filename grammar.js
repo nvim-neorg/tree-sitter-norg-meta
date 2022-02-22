@@ -2,80 +2,58 @@ module.exports = grammar({
     name: 'norg_meta',
 
     rules: {
-        metadata: $ => repeat(
-            choice(
-                $.pair,
-                $.delimiter
+        metadata: $ => repeat(choice(
+            $.pair,
+            $.delimiter,
+        )),
+
+        key: _ => /[^\-\s:][^\s:]*/,
+
+        value: $ => seq(
+            /[^\s\[\]\{\}][^\n\[\]\{\}(\~\n)]*/,
+            optional(
+                seq(
+                    "~\n",
+                    alias($.value, "_value")
+                )
             )
         ),
 
-        pair: $ => seq(
-            $._key,
-            token.immediate(/[ \t\v]*/),
-            choice(
-                $.value,
-                $.object,
-                $.array,
-                token.immediate('\n'),
+        array: $ => seq(
+            '[',
+            repeat(
+                choice(
+                    $.array,
+                    $.value,
+                    $.object,
+                ),
             ),
-        ),
-
-        key: $ => /[^\s:]+/,
-
-        _key: $ => seq(
-            $.key,
-            $._separator
-        ),
-
-        value: $ => seq(
-            optional(
-                repeat($._text_with_trailing_modifier)
-            ),
-            $._text_till_eol
+            ']',
         ),
 
         object: $ => seq(
-            "{",
-            repeat(
-                $.pair,
-            ),
-            "}",
+            '{',
+            repeat($.pair),
+            '}',
         ),
 
-        array: $ => seq(
-            "[",
-            repeat(
-                field("item", $.value),
+        pair: $ => seq(
+            $.key,
+            token.immediate(':'),
+            /[\t\v ]*/,
+            seq(
+                choice(
+                    $.array,
+                    $.value,
+                    $.object,
+                    '\n',
+                ),
             ),
-            "]",
         ),
 
-        delimiter: $ => choice(
-            $._delimiter,
-            $.named_delimiter
-        ),
-
-        _delimiter: $ => /---+\n/,
-
-        named_delimiter: $ => prec(3, seq(
-            /---+\s*/,
-            prec.left(2,
-                seq(
-                    field("title", /[^-]+/),
-                    /\s*/
-                )
-            ),
-            $._delimiter,
-        )),
-
-        _separator: $ => ":",
-
-        _text_till_eol: $ => /[^(\~\n)]+/,
-
-        _text_with_trailing_modifier: $ => seq(
-            $._text_till_eol,
-            "\~\n"
+        delimiter: _ => seq(
+            "-",
+            /[^\n]*/,
         )
-
     }
 });
