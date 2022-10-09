@@ -10,12 +10,12 @@ module.exports = grammar({
         key: _ => /[^\-\s:][^\s:]*/,
 
         value: $ => seq(
-            /[^\s\[\]\{\}][^\n\[\]\{\}\~]*/,
+            /[^\s][^\n\~]*/,
             optional(
                 choice(
                     seq(
                         "~",
-                        /[^\n\[\]\{\}\~]+/,
+                        /[^\n\~]+/,
                     ),
                     seq(
                         "~\n",
@@ -47,14 +47,12 @@ module.exports = grammar({
             $.key,
             token.immediate(':'),
             /[\t\v ]*/,
-            seq(
-                choice(
-                    $.array,
-                    $.value,
-                    $.object,
-                    '\n',
-                ),
+            choice(
+                $.array,
+                $.value,
+                $.object,
             ),
+            optional(token.immediate('\n')),
         ),
 
         delimiter: _ => seq(
