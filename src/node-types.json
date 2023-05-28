@@ -1,8 +1,25 @@
 [
   {
-    "type": "_value",
-    "named": false,
-    "fields": {}
+    "type": "value",
+    "named": true,
+    "subtypes": [
+      {
+        "type": "array",
+        "named": true
+      },
+      {
+        "type": "number",
+        "named": true
+      },
+      {
+        "type": "object",
+        "named": true
+      },
+      {
+        "type": "string",
+        "named": true
+      }
+    ]
   },
   {
     "type": "array",
@@ -12,14 +29,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "object",
-          "named": true
-        },
         {
           "type": "value",
           "named": true
@@ -60,6 +69,10 @@
       "required": false,
       "types": [
         {
+          "type": "delimiter",
+          "named": true
+        },
+        {
           "type": "pair",
           "named": true
         }
@@ -75,15 +88,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
-          "named": true
-        },
-        {
           "type": "key",
-          "named": true
-        },
-        {
-          "type": "object",
           "named": true
         },
         {
@@ -94,16 +99,19 @@
     }
   },
   {
-    "type": "value",
-    "named": true,
-    "fields": {}
+    "type": "\u0000",
+    "named": false
   },
   {
     "type": "\n",
     "named": false
   },
   {
-    "type": "-",
+    "type": "\r",
+    "named": false
+  },
+  {
+    "type": "\r\n",
     "named": false
   },
   {
@@ -123,19 +131,19 @@
     "named": true
   },
   {
+    "type": "number",
+    "named": true
+  },
+  {
+    "type": "string",
+    "named": true
+  },
+  {
     "type": "{",
     "named": false
   },
   {
     "type": "}",
-    "named": false
-  },
-  {
-    "type": "~",
-    "named": false
-  },
-  {
-    "type": "~\n",
     "named": false
   }
 ]

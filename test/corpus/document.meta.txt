@@ -6,7 +6,7 @@ title: Neorg
 (metadata
     (pair
         (key)
-        (value)
+        (string)
     )
 )
 
@@ -19,46 +19,40 @@ author: nvim-neorg
 (metadata
     (pair
         (key)
-        (value)
+        (string)
     )
     (pair
         (key)
-        (value)
+        (string)
     )
 )
 
 =================
-Multi-word values
+Multi-word strings
 =================
 description: This is a longer text.
 ---
 (metadata
     (pair
         (key)
-        (value)
+        (string)
     )
 )
 
 =================
-Trailing Modifier
+Numbers
 =================
-title: Neorg
-description: This is an even longer text~
-    which even gets continued on the next line.
-author: nvim-neorg
+should-be-a-number: 320
+not-a-number: 530 and some text here
 ---
 (metadata
     (pair
         (key)
-        (value)
+        (number)
     )
     (pair
         (key)
-        (value)
-    )
-    (pair
-        (key)
-        (value)
+        (string)
     )
 )
 
@@ -72,12 +66,12 @@ author: nvim-neorg
 (metadata
     (pair
         (key)
-        (value)
+        (string)
     )
     (delimiter)
     (pair
         (key)
-        (value)
+        (string)
     )
 )
 
@@ -93,12 +87,12 @@ author: nvim-neorg
 (metadata
     (pair
         (key)
-        (value)
+        (string)
     )
     (delimiter)
     (pair
         (key)
-        (value)
+        (string)
     )
 )
 
@@ -116,11 +110,11 @@ tangle: {
         (object
             (pair
                 (key)
-                (value)
+                (string)
             )
             (pair
                 (key)
-                (value)
+                (string)
             )
         )
     ) 
@@ -131,8 +125,8 @@ Groups within Groups
 ====================
 parent_key: {
     nested_key: {
-        key: value
-        otherkey: value
+        key: string
+        otherkey: string
     }
 }
 ---
@@ -145,11 +139,11 @@ parent_key: {
                 (object
                     (pair
                         (key)
-                        (value)
+                        (string)
                     )
                     (pair
                         (key)
-                        (value)
+                        (string)
                     )
                 )
             )
@@ -171,9 +165,9 @@ key: [
     (pair
         (key)
         (array
-            (value)
-            (value)
-            (value)
+            (string)
+            (string)
+            (string)
         )
     )
 )
@@ -196,32 +190,11 @@ object: {
             (pair
                 (key)
                 (array
-                    (value)
-                    (value)
-                    (value)
+                    (string)
+                    (string)
+                    (string)
                 )
             )
-        )
-    )
-)
-
-=====================
-Arrays with Carryover
-=====================
-array: [
-    item 1
-    item 2~
-    that carries over
-    item 3
-]
----
-(metadata
-    (pair
-        (key)
-        (array
-            (value)
-            (value)
-            (value)
         )
     )
 )

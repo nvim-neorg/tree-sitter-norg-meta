@@ -1,63 +1,85 @@
+let newline = choice("\n", "\r", "\r\n");
+let newline_or_eof = choice("\n", "\r", "\r\n", "\0");
+
+const precs = {
+    "non_string": 1,
+    "key": 2,
+    "above_key": 3,
+};
+
 module.exports = grammar({
     name: 'norg_meta',
 
+    extras: $ => [],
+
+    supertypes: $ => [
+        $.value,
+    ],
+
     rules: {
-        metadata: $ => repeat(choice(
+        metadata: $ => seq(repeat(newline), repeat(seq(optional($._whitespace), choice(
             $.pair,
             $.delimiter,
-        )),
+        ), repeat1(newline_or_eof)))),
 
-        key: _ => /[^\-\s:][^\s:]*/,
+        _whitespace: _ => token(prec(precs.non_string, /[\t                　]+/)),
 
-        value: $ => seq(
-            /[^\s][^\n\~]*/,
-            optional(
-                choice(
-                    seq(
-                        "~",
-                        /[^\n\~]+/,
-                    ),
-                    seq(
-                        "~\n",
-                        alias($.value, "_value")
-                    )
-                )
-            )
-        ),
+        key: _ => token(prec(precs.key, /[^\s:]+/)),
+
+        number: _ => token(/\d+/),
 
         array: $ => seq(
-            '[',
-            repeat(
-                choice(
-                    $.array,
-                    $.value,
-                    $.object,
+            token(prec(precs.non_string, "[")),
+            optional(token(prec(precs.non_string, /[\n\r\s]+/))),
+            optional(seq(
+                $.value,
+                repeat(
+                    prec.left(seq(
+                        repeat1(newline),
+                        optional($._whitespace),
+                        optional($.value),
+                    )),
                 ),
-            ),
-            ']',
+            )),
+            token(prec(precs.non_string, "]")),
         ),
+
+        string: _ => /[^\n]+/,
 
         object: $ => seq(
-            '{',
-            repeat($.pair),
-            '}',
+            token(prec(precs.non_string, "{")),
+            optional(token(prec(precs.above_key, /[\n\r\s]+/))),
+            optional(seq(
+                choice($.pair, $.delimiter),
+                repeat(
+                    prec.left(seq(
+                        repeat1(newline),
+                        optional($._whitespace),
+                        optional(choice($.pair, $.delimiter)),
+                    )),
+                ),
+            )),
+            token(prec(precs.above_key, "}")),
         ),
 
-        pair: $ => seq(
+        value: $ => choice(
+            $.number,
+            $.string,
+            $.array,
+            $.object,
+        ),
+
+        pair: $ => prec.right(seq(
             $.key,
-            token.immediate(':'),
-            /[\t\v ]*/,
-            choice(
-                $.array,
-                $.value,
-                $.object,
+            ":",
+            optional(
+                seq(
+                    $._whitespace,
+                    optional($.value),
+                ),
             ),
-            optional(token.immediate('\n')),
-        ),
+        )),
 
-        delimiter: _ => seq(
-            "-",
-            /[^\n]*/,
-        )
+        delimiter: $ => seq(token(prec(precs.above_key, /-+/)), optional(/.+/)),
     }
 });
