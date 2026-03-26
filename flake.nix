@@ -16,7 +16,7 @@
       in rec {
         packages.tree-sitter-norg-meta = grammar {
           language = "norg-meta";
-          source = ./.;
+          src = ./.;
           inherit (pkgs.tree-sitter) version;
         };
         defaultPackage = packages.tree-sitter-norg-meta;
